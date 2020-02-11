@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Key Detection</title>
   <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
 </head>
+
 <body>
-<script>
-</script>
+  <script>
+    const konamiCode = '-38-38-40-40-37-39-37-39-66-65'
+
+    let actualSeq = '';
+
+    function handleKey(e) {
+      actualSeq += '-' + e.keyCode;
+
+      if (konamiCode.slice(0, actualSeq.length) != actualSeq) {
+        actualSeq = '';
+      } else if (konamiCode == actualSeq) {
+        console.log('KONAMI POWER!!!');
+        actualSeq = '';
+      }
+      console.log(actualSeq);
+    }
+
+    window.addEventListener('keydown', handleKey);
+  </script>
 </body>
+
 </html>
