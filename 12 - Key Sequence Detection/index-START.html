@@ -9,12 +9,12 @@
 
 <body>
   <script>
-    const konamiCode = '-38-38-40-40-37-39-37-39-66-65'
+    const konamiCode = 'seba'
 
     let actualSeq = '';
 
     function handleKey(e) {
-      actualSeq += '-' + e.keyCode;
+      actualSeq += '' + e.key;
 
       if (konamiCode.slice(0, actualSeq.length) != actualSeq) {
         actualSeq = '';
