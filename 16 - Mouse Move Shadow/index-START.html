@@ -1,40 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Mouse Shadow</title>
 </head>
-<body>
 
+<body>
   <div class="hero">
     <h1 contenteditable>🔥WOAH!</h1>
   </div>
 
   <style>
-  html {
-    color: black;
-    font-family: sans-serif;
-  }
+    :root {
+      --xPos: 0px;
+      --yPos: 0px;
+      --xPosNeg: -0px;
+      --yPosNeg: -0px;
+    }
 
-  body {
-    margin: 0;
-  }
+    html {
+      color: black;
+      font-family: sans-serif;
+    }
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+    body {
+      margin: 0;
+    }
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
+
+    h1 {
+      text-shadow: var(--xPos) var(--yPos) 0 rgba(3, 70, 194, 0.7),
+        var(--xPosNeg) var(--yPos) 0 rgba(206, 14, 14, 0.7), var(--xPos) var(--yPosNeg) 0 rgba(41, 161, 5, 0.7), var(--xPosNeg) var(--yPosNeg) 0 rgba(236, 17, 181, 0.7);
+      font-size: 100px;
+    }
   </style>
 
-<script>
-</script>
+  <script>
+    const body = document.querySelector('body');
+    let root = document.documentElement;
+
+    function handleHover(e) {
+      const vsX = window.innerWidth
+      const vsY = window.innerHeight
+      const halfDistX = (e.clientX - (vsX / 2)) / 2;
+      const halfDistY = (e.clientY - (vsY / 2)) / 2;
+
+      // console.log(`X: ${e.clientX - (vsX / 2)}` + `Y: ${e.clientY - (vsY / 2)}`);
+
+      root.style.setProperty('--xPos', `${halfDistX}px`);
+      root.style.setProperty('--yPos', `${halfDistY}px`);
+      root.style.setProperty('--xPosNeg', `${-halfDistX}px`);
+      root.style.setProperty('--yPosNeg', `${-halfDistY}px`);
+    }
+
+    body.addEventListener('mousemove', handleHover);
+  </script>
 </body>
+
 </html>
