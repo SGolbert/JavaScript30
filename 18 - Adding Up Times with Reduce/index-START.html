@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Videos</title>
 </head>
+
 <body>
   <ul class="videos">
     <li data-time="5:43">
@@ -181,7 +183,39 @@
       Video 58
     </li>
   </ul>
-<script>
-</script>
+  <script>
+    const videos = [...document.querySelectorAll('li[data-time]')];
+
+    function reduceTimes(acc, current) {
+      const timeString = current.attributes['data-time'].nodeValue;
+      const numArray = timeString.split(':').map(el => Number(el));
+
+      acc.seconds += numArray[1];
+      acc.minutes += numArray[0];
+
+      if (acc.seconds >= 60) {
+        acc.seconds -= 60;
+        acc.minutes++;
+      }
+
+      if (acc.minutes >= 60) {
+        acc.minutes -= 60;
+        acc.hours++;
+      }
+
+      return acc;
+    }
+
+    const accTime = {
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    };
+
+    videos.reduce(reduceTimes, accTime);
+
+    console.log(accTime);
+  </script>
 </body>
+
 </html>
