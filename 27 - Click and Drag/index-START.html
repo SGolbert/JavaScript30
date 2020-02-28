@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Click and Drag</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="items">
     <div class="item item1">01</div>
@@ -34,8 +36,16 @@
     <div class="item item25">25</div>
   </div>
 
-<script>
-</script>
+  <script>
+    const items = document.querySelector('items');
 
-  </body>
+    function handleMouseDown(e) {
+      console.log(e);
+    }
+
+    items.addEventListener('mousedown', handleMouseDown);
+  </script>
+
+</body>
+
 </html>
